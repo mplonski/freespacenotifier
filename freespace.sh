@@ -2,8 +2,9 @@
 
 # freespacenotifier
 #
-# small bash script using notify-send (xfce4) to notify user
-# when there is not so much disc space left
+# Small bash script using notify-send (xfce4) to notify user
+# when there is not so much disc space left. Notification is
+# displayed ones for 30 minutes (or untill new value is exceeded).
 #
 # licence: GNU GPL
 # author: sokoli / sokoli.pl
@@ -71,14 +72,20 @@ testspace() {
 	fi
 }
 
-# to activate warnings you need to add / remove / change code below
-# in this example there're information for 5.1GB left, warnings for
-# 3.1GB & 4.1GB left and errors for 2.1GB & 1.1GB left
+# to activate notifications you need to add / remove / change code below.
+#
+# in this example there're:
+# a) information for 5GB left
+# b) warnings for 3GB & 4GB left
+# c) errors for 2GB & 1GB left
+#
+# remember that df -BG rounds values to full GB.
+#
 # important: remember to put smaller values first!
 
-testspace "1.0" "error"
-testspace "2.0" "error"
-testspace "3.0" "warning"
-testspace "4.0" "warning"
-testspace "5.0" "information"
+testspace "1" "error"
+testspace "2" "error"
+testspace "3" "warning"
+testspace "4" "warning"
+testspace "5" "information"
 
