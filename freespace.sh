@@ -25,13 +25,19 @@
 # uncomment line below in order to enable X ACL for localhost
 # xhost +local: &>/dev/null
 
-discinfo="`df -h | grep sda1`" # must be readable!
-freespace="`df -BG | grep sda1 | awk '{ print $4 }'`" # must be in GB!
+# readable part
+hdiscinfo="`df -h | grep sda1`"
+hfreespace="`echo $hdiscinfo | awk '{ print $4 }'`"
+hmaxspace="`echo $hdiscinfo | awk '{ print $2 }'`"
+
+# GB-part
+discinfo="`df -BG | grep sda1`"
+freespace="`echo $discinfo | awk '{ print $4 }'`"
 numfreespace="`echo $freespace | sed '{s/[^0-9,]*//g; s/,/./g}'`"
 maxspace="`echo $discinfo | awk '{ print $2 }'`"
 
 title="Warning!"
-warning="Free disc space is low. Available $freespace of $maxspace."
+warning="Free disc space is low. Available $hfreespace of $hmaxspace."
 
 lockdir="/var/lock/"
 lockfile="freespacelock"
@@ -55,7 +61,7 @@ testspace() {
 	minspace="$1"
 	icon="$2"
 
-	if awk "BEGIN {exit !($minspace > $numfreespace)}"
+	if awk "BEGIN {exit !($minspace >= $numfreespace)}"
 	then
 		if test "`locked $minspace`" = "no"
 		then
@@ -66,11 +72,13 @@ testspace() {
 }
 
 # to activate warnings you need to add / remove / change code below
-# in this example there're warnings for 3GB or 4GB left and errors for 2GB and 1GB left
-# remember to put smaller values first!
+# in this example there're information for 5.1GB left, warnings for
+# 3.1GB & 4.1GB left and errors for 2.1GB & 1.1GB left
+# important: remember to put smaller values first!
 
 testspace "1.0" "error"
 testspace "2.0" "error"
 testspace "3.0" "warning"
 testspace "4.0" "warning"
+testspace "5.0" "information"
 
