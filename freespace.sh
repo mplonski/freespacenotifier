@@ -22,7 +22,7 @@ numfreespace="`echo $freespace | sed 's/[^0-9,]*//g' | sed 's/,/./g'`"
 maxspace="`echo $discinfo | awk '{ print $2 }'`"
 
 title="Warning!"
-warning="Free disc space is low. Available ${freespace} of ${maxspace}."
+warning="Free disc space is low. Available $freespace of $maxspace."
 
 lockdir="/var/lock/"
 lockfile="freespacelock"
