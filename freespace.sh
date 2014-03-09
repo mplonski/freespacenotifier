@@ -25,8 +25,8 @@
 # uncomment line below in order to enable X ACL for localhost
 # xhost +local: &>/dev/null
 
-discinfo="`df -h | grep sda1`"
-freespace="`echo $discinfo | awk '{ print $4 }'`"
+discinfo="`df -h | grep sda1`" # must be readable!
+freespace="`df -BG | grep sda1 | awk '{ print $4 }'`" # must be in GB!
 numfreespace="`echo $freespace | sed '{s/[^0-9,]*//g; s/,/./g}'`"
 maxspace="`echo $discinfo | awk '{ print $2 }'`"
 
