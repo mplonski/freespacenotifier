@@ -79,7 +79,8 @@ testspace() {
 # b) warnings for 3GB & 4GB left
 # c) errors for 2GB & 1GB left
 #
-# remember that df -BG rounds values to full GB.
+# remember that df -BG rounds value to the next highest integer.
+# for example, 4.1Gb of free space is rounded to 5Gb.
 #
 # important: remember to put smaller values first!
 
