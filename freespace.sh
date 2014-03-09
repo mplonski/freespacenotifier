@@ -18,7 +18,7 @@
 
 discinfo="`df -h | grep sda1`"
 freespace="`echo $discinfo | awk '{ print $4 }'`"
-numfreespace="`echo $freespace | sed 's/[^0-9,]*//g' | sed 's/,/./g'`"
+numfreespace="`echo $freespace | sed '{s/[^0-9,]*//g; s/,/./g}'`"
 maxspace="`echo $discinfo | awk '{ print $2 }'`"
 
 title="Warning!"
