@@ -15,6 +15,15 @@
 # 2) change title / warning (or leave it)
 # 3) add / remove / change code under testspace()
 # 4) add this script to crontab and don't worry about disc space!
+#
+# warning!
+# sometimes script seems not to be working after "just" adding to crontab
+# in such cases you might need to specify display and enable X ACL
+# more: https://help.ubuntu.com/community/CronHowto#GUI%20Applications
+#
+
+# uncomment line below in order to enable X ACL for localhost
+# xhost +local: &>/dev/null
 
 discinfo="`df -h | grep sda1`"
 freespace="`echo $discinfo | awk '{ print $4 }'`"
