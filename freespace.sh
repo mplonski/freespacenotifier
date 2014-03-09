@@ -4,7 +4,7 @@
 #
 # Small bash script using notify-send (xfce4) to notify user
 # when there is not so much disc space left. Notification is
-# displayed ones for 30 minutes (or untill new value is exceeded).
+# displayed ones for 30 minutes (or when new value is exceeded).
 #
 # licence: GNU GPL
 # author: sokoli / sokoli.pl
